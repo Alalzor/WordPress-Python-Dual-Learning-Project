@@ -1,0 +1,40 @@
+[mysqld]
+# ===============================================
+# MySQL 8.0 Optimization for WordPress Project
+# ===============================================
+
+# === MEMORY SETTINGS ===
+innodb_buffer_pool_size = 256M
+innodb_redo_log_capacity = 134217728
+innodb_log_buffer_size = 16M
+key_buffer_size = 32M
+
+# === CONNECTION SETTINGS ===
+max_connections = 100
+connect_timeout = 10
+wait_timeout = 600
+interactive_timeout = 600
+
+# === PERFORMANCE SETTINGS ===
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method = O_DIRECT
+innodb_file_per_table = 1
+innodb_stats_on_metadata = 0
+
+# === TEMPORARY TABLES ===
+tmp_table_size = 64M
+max_heap_table_size = 64M
+
+# === LOGGING & MONITORING ===
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/slow.log
+long_query_time = 2
+log_queries_not_using_indexes = 1
+
+# === CHARACTER SET (WordPress recommended) ===
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+# === SECURITY ===
+skip-name-resolve = 1
+sql_mode = STRICT_TRANS_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO

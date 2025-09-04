@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  db:
+    build: ./BDD
+    container_name: mysql_database
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wp_network
+
+  wordpress:
+    build: ./wordpress
+    container_name: wordpress_app
+    env_file:
+      - .env
+    expose:
+      - "9000"
+    volumes:
+      - wp_data:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - wp_network
+  nginx:
+    build: ./nginx
+    container_name: nginx_proxy
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./ssl:/etc/nginx/ssl
+      - wp_data:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - wp_network
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  wp_network:
+    driver: bridge
+
+

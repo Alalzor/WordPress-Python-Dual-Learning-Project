@@ -1,0 +1,46 @@
+# Environment variables (keep .env.example instead)
+version-wordpress/.env
+
+# Docker volumes and cache
+docker-compose.override.yml
+.docker/
+
+# SSL certificates (regenerate for production)
+version-wordpress/ssl/*.crt
+version-wordpress/ssl/*.key
+version-wordpress/ssl/*.pem
+
+# WordPress uploads and cache
+version-wordpress/wordpress/wp-content/uploads/
+version-wordpress/wordpress/wp-content/cache/
+
+# Future Python specific (when implemented)
+version-python/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*.sql.gz
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Planning documents (moved to desktop)
+planning.md
