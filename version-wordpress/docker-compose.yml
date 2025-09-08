@@ -1,4 +1,4 @@
-version: '3.8'
+
 services:
   db:
     build: ./BDD
@@ -21,6 +21,7 @@ services:
       - "9000"
     volumes:
       - wp_data:/var/www/html
+      - ../wp-plugins/perf-dashboard:/var/www/html/wp-content/plugins/perf-dashboard
     depends_on:
       - db
     networks:
